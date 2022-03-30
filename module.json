@@ -1,0 +1,27 @@
+{
+	"name": "sta-initiative",
+	"title": "StarTrek Adventures Initiative",
+	"description": "CombatTracker improvements for StarTrek Adventures, building on top of the 'Lancer Initiative' module. May be suitable for other game systems that have attribute-derived combat initiative.",
+	"version": "0.1.0",
+	"author": "CoolcatFVTT",
+	"scripts": [
+		"sta-initiative.js"
+	],
+	"styles": [
+		"sta-initiative.css"
+	],
+	"dependencies": [
+		{
+			"name": "lib-wrapper"
+		},
+		{
+			"name": "lancer-initiative"
+		}
+	],
+	"minimumCoreVersion": "9.242",
+	"compatibleCoreVersion": "9",
+	"license": "LGPL 3.0",
+	"url": "https://github.com/CoolcatFVTT/StarTrekAdventures-Initiative",
+	"manifest": "https://raw.githubusercontent.com/CoolcatFVTT/StarTrekAdventures-Initiative/main/module.json",
+	"download": "https://github.com/CoolcatFVTT/StarTrekAdventures-Initiative/archive/refs/tags/v0.1.0.zip"
+}
