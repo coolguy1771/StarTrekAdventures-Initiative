@@ -1,5 +1,5 @@
 # Overview
-This [FoundryVTT](https://foundryvtt.com/) module provides various CombatTracker improvements, intended to be used with the [StarTrekAdventures system](https://github.com/mkscho63/sta). However, it _may_ be suitable for other game systems that have attribute-derived combat initiative. The module builds on top of the awesome [Lancer Initiative](https://github.com/BoltsJ/lancer-initiative.git) module.
+This [FoundryVTT](https://foundryvtt.com/) module provides various CombatTracker improvements, intended to be used with the [StarTrekAdventures](https://github.com/mkscho63/sta) system. However, it _may_ be suitable for other game systems that have attribute-derived combat initiative. The module builds on top of the awesome [Lancer Initiative](https://github.com/BoltsJ/lancer-initiative.git) module by BoltsJ.
 
 # Features
 - Should you use the [StarTrekAdventures](https://github.com/mkscho63/sta) system, you may want to also consider using my [StarTrek Adventures Initiative Fix](https://github.com/CoolcatFVTT/StarTrekAdventures-Initiative-Fix) module. This fixes the formula for initiative to use the _Daring_ attribute, as stated in StarTrek Adventures core rules, rather than _Security_ discipline. It's kept as a separate module to increase chances that these CombatTracker improvements may be helpful for other game systems.
