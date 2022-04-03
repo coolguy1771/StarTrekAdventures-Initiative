@@ -1,7 +1,7 @@
 {
 	"name": "sta-initiative",
 	"title": "StarTrek Adventures Initiative",
-	"description": "CombatTracker improvements for StarTrek Adventures, building on top of the 'Lancer Initiative' module. May be suitable for other game systems that have attribute-derived combat initiative.",
+	"description": "CombatTracker improvements for StarTrek Adventures. Depends on the 'Lancer Initiative' module by Bolts, which does most of the work.",
 	"version": "0.1.0",
 	"author": "CoolcatFVTT",
 	"scripts": [
@@ -16,6 +16,10 @@
 		},
 		{
 			"name": "lancer-initiative"
+		},
+		{
+			"name": "sta",
+			"type": "system"
 		}
 	],
 	"minimumCoreVersion": "9.242",

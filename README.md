@@ -1,12 +1,21 @@
 # Overview
-This [FoundryVTT](https://foundryvtt.com/) module provides various CombatTracker improvements, intended to be used with the [StarTrekAdventures system](https://github.com/mkscho63/sta). However, it _may_ be suitable for other game systems that have attribute-derived combat initiative. The module builds on top of the awesome [Lancer Initiative](https://github.com/BoltsJ/lancer-initiative.git) module.
+This [FoundryVTT](https://foundryvtt.com/) module provides various CombatTracker improvements, intended to be used with the [StarTrekAdventures system](https://github.com/mkscho63/sta). The module heavily interacts with the awesome [Lancer Initiative](https://github.com/BoltsJ/lancer-initiative.git) module, which does most of the work.
+
+# Tested against these Dependencies
+- [Star Trek Adventures 2d20 system](https://foundryvtt.com/packages/sta) by FullMetalSeraph - Version 1.1.6 ([Manifest](https://raw.githubusercontent.com/mkscho63/sta/master/src/system.json))
+- [Lancer Initiative](https://foundryvtt.com/packages/lancer-initiative) by Bolts - Version 24 ([Manifest](https://github.com/BoltsJ/lancer-initiative/releases/download/v24/module.json))
+- [LibWrapper](https://foundryvtt.com/packages/lib-wrapper) by ruipin - Version 1.12.4.0 ([Manifest](https://github.com/ruipin/fvtt-lib-wrapper/releases/download/v1.12.4.0/module.json))
+- [LCARS UI for Star Trek Adventures](https://foundryvtt.com/packages/sta-lcars-ui) by Fabulist - Version 0.2.2 ([Manifest](https://raw.githubusercontent.com/FabulistVtt/sta-lcars-ui/main/module.json))
 
 # Features
-- Should you use the [StarTrekAdventures](https://github.com/mkscho63/sta) system, you may want to also consider using my [StarTrek Adventures Initiative Fix](https://github.com/CoolcatFVTT/StarTrekAdventures-Initiative-Fix) module. This fixes the formula for initiative to use the _Daring_ attribute, as stated in StarTrek Adventures core rules, rather than _Security_ discipline. It's kept as a separate module to increase chances that these CombatTracker improvements may be helpful for other game systems.
-- **Automatically start combat** when initializing an encounter and **automatically set initiatives**.
+- **Fix the formula for initiative** to use the _Daring_ attribute, as stated in StarTrek Adventures core rules, rather than _Security_ discipline.
+- **Automatically start combat** when initializing an encounter
+- **Automatically "roll" initiatives** and **reset activation** whenever a character joins the encounter.
 - **Hide chat messages and notification spam** from "rolling" initiatives in the background.
-- **Hide combatant names** from players, if they are hidden for them in token settings. Combatants show as "Unknown Combatant" (or your localized equivalent). Names are always visible for GM.
-- **Hide combatant initiative** of neutral and enemy characters from players. Always visible for GM.
+- If the combatant token is hidden to players based on its token settings:
+	- **Hide combatant names** from players in CombatTracker as well as ChatLog. Combatants show as "Unknown Combatant" (or your localized equivalent). Names are always visible for GM.
+	- **Hide target value** of dice rolls in ChatLog, to not reveal stats to players.
+- **Hide combatant initiative** of neutral and enemy characters from players in CombatTracker. Always visible for GM. Players only see the turn-order, not actual values.
 - Features inherited from [Lancer Initiative](https://github.com/BoltsJ/lancer-initiative.git):
 	- **Sort combatants** by friendly/neutral/enemy, then by initiative.
 	- Support for combatants that have **multiple turns per round**. E.g. for NPC ship crews or when given by special talents. GM can right-click combatants in the list and hit _"Add Activation"_.

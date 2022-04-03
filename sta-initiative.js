@@ -1,84 +1,131 @@
 class STAInitiative {
 	static get MODULE_ID() { return "sta-initiative"; }
 	
-	// Determine message visibility.
-	static isMessageVisible(cm)
+	static shouldHideChatMessage(cm)
 	{
-		const isWhisper = cm.data.whisper && cm.data.whisper.length > 0,
-			  isBlind = isWhisper && cm.data.blind;
-		return !isBlind;
+		return cm?.data?.flags?.core?.initiativeRoll;
 	}
 	
-	// Determine whether combatant info should be visible in the CombatTracker.
+	static shouldCensorChatMessage(cm)
+	{
+		const speaker = cm.data.speaker;
+		if (!speaker)
+			return false;
+		
+		const token = game.scenes.get(speaker.scene).tokens.get(speaker.token);
+		const result = !this.isTokenInfoVisible(token);
+		return result;
+	}
+	
 	static isCombatantInfoVisible(combatant)
 	{
-		if (!combatant.token || game.user.isGM)
+		if (game.user.isGM)
 			return true;
 		else if (combatant.data.name)
 			return true; // manual display name override in CombatTracker
+		else
+			return this.isTokenInfoVisible(combatant.token);
+	}
+	
+	static isTokenInfoVisible(token)
+	{
+		if (!token || game.user.isGM)
+			return true;
 		
-		const mode = combatant.token.data.displayName;			
+		const mode = token.data.displayName;			
 		if (mode === CONST.TOKEN_DISPLAY_MODES.NONE)
 			return false;
 		else if (mode === CONST.TOKEN_DISPLAY_MODES.CONTROL ||
 		         mode === CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER ||
 				 mode === CONST.TOKEN_DISPLAY_MODES.OWNER)
-			return combatant.token.isOwner;
+			return token.isOwner;
 		else
 			return true;
 	}
+	
+	static requestRoll(combat)
+	{	
+		if (this._queuedCombats.indexOf(combat) === -1)
+		{
+			this._queuedCombats.push(combat);		
+			setTimeout(this._processRoll);	
+		}
+	}	
+	
+	static _queuedCombats = [];
+	
+	static _processRoll()
+	{
+		for (const combat of STAInitiative._queuedCombats)
+		{
+			combat.rollAll().then(() => 
+			{
+				if (!combat.started)
+					combat.startCombat();
+			});
+		}
+		STAInitiative._queuedCombats.length = 0;
+	}
 }
 
-// Hide private messages entirely.
-Hooks.on('renderChatMessage', (cm, jq) => {
-	const html = jq[0];
-	if (STAInitiative.isMessageVisible(cm))
-		html.style.removeProperty('display');
-	else
-		html.style.display = 'none';
+// Hide or censor chat messages.
+Hooks.on('renderChatMessage', (cm, jq) =>
+{
+	if (STAInitiative.shouldHideChatMessage(cm))
+	{
+		jq[0].style.display = 'none';
+	}
+ 	else if (STAInitiative.shouldCensorChatMessage(cm))
+	{
+		const speaker = jq.find("header.message-header > h4.message-sender")[0];
+		if (speaker)
+			speaker.innerHTML = game.i18n.localize("COMBAT.UnknownCombatant");
+		
+		const diceTarget = jq.find("div.message-content > div > div.dice-roll > div.dice-result > div.dice-formula > table.aim > tbody > tr > td:nth-child(2)")[0];
+		if (diceTarget)
+			diceTarget.innerHTML = "Target:?"; // appearently not localized in STA
+	}
 });
 
-Hooks.once('setup', () => {	
+Hooks.once('setup', () =>
+{	
 	// Fix formula for initiative to use the daring attribute, as stated in StarTrek Adventures core rules, rather than security discipline
 	CONFIG.Combat.initiative =
 	{
 		formula: '@attributes.daring.value',
 		decimals: 0
 	};
-	
-	// Automatically start combat when initializing the encounter
-  	libWrapper.register(STAInitiative.MODULE_ID, 'CombatTracker.prototype.initialize', function(wrapped, {combat=null, render=true}={})
-	{
-		wrapped();
 		
-		// nested timeout, we need to wait one full event cycle for everything to be properly initialized before we can start combat 
-		setTimeout((tracker) => {
-			setTimeout((tracker) => {
-				const combat = tracker.viewed;
-				if (combat !== null && !combat.started)
-					combat.startCombat();
-			}, 0, tracker);
-		}, 0, this);
-	}, 'WRAPPER');
-		
-	// Automatically roll initiative when starting combat
-  	libWrapper.register(STAInitiative.MODULE_ID, 'Combat.prototype.startCombat', function(wrapped)
+	// Automatically reset activation and roll initiative for anyone joining the the encounter
+  	libWrapper.register(STAInitiative.MODULE_ID, 'Combat.prototype._onCreateEmbeddedDocuments', function(wrapped, type, documents, result, options, userId)
 	{
-		return wrapped().then(() => this.rollAll());
-	}, 'WRAPPER');
-	
-	// Force Initiative rolls to be blind
-	libWrapper.register(STAInitiative.MODULE_ID, 'Combat.prototype.rollInitiative', function(wrapped, ids, {formula=null, updateTurn=true, messageOptions={}}={})
-	{
-		messageOptions.rollMode = CONST.DICE_ROLL_MODES.BLIND;
-		return wrapped(ids, {formula, updateTurn, messageOptions});
-	}, 'WRAPPER');
+		wrapped(type, documents, result, options, userId);
 		
-	// Eliminate new message notification if the message is not visible.
+		if (type == "Combatant")
+		{
+			const module = CONFIG.LancerInitiative.module;
+			const updates = documents.map(c =>
+			{
+				// Ugly logic, but copy&paste from compressed/optimized LancerCombat.resetActivations to make sure it does the same
+				var _a, _b;
+				return {
+					_id: c.id,
+					[`flags.${module}.activations.value`]: this.settings.skipDefeated &&
+						(c.data.defeated ||
+							!!((_a = c.actor) === null || _a === void 0 ? void 0 : _a.effects.find(e => e.getFlag("core", "statusId") === CONFIG.Combat.defeatedStatusId)))
+						? 0
+						: (_b = c.activations.max) !== null && _b !== void 0 ? _b : 0
+				};
+			});
+			this.updateEmbeddedDocuments("Combatant", updates).then(() => STAInitiative.requestRoll(this));
+		}
+	}, 'WRAPPER');
+				
+	// Eliminate new message notification icon, if the message is not visible.
 	libWrapper.register(STAInitiative.MODULE_ID, 'ChatLog.prototype.notify', function(wrapped, cm)
 	{
 		this._lastMessageTime = Date.now();
-		if (STAInitiative.isMessageVisible(cm))
+		if (!STAInitiative.shouldHideChatMessage(cm))
 			wrapped(cm);
 	}, 'MIXED');	
 	
@@ -101,7 +148,8 @@ Hooks.once('setup', () => {
 	}, 'WRAPPER');
 });
 
-Hooks.once('ready', () => {
+Hooks.once('ready', () =>
+{
 	// Check dependencies
     if (!game.modules.get('lib-wrapper')?.active && game.user.isGM)
 	{

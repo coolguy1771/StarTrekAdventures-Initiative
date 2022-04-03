@@ -1,6 +1,6 @@
-#combat-tracker.sta-initiative-player > li.combatant.neutral > div.token-name > div > span.initiative,
-#combat-tracker.sta-initiative-player > li.combatant.enemy > div.token-name > div > span.initiative
+body.system-sta #combat-tracker.sta-initiative-player > li.combatant.neutral > div.token-name > div > span.initiative,
+body.system-sta #combat-tracker.sta-initiative-player > li.combatant.enemy > div.token-name > div > span.initiative,
+body.system-sta #combat-round > nav:nth-child(2) > a.combat-control
 {
 	display: none;
 }
-
