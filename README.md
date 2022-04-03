@@ -9,13 +9,14 @@ This [FoundryVTT](https://foundryvtt.com/) module provides various CombatTracker
 
 # Features
 - **Fix the formula for initiative** to use the _Daring_ attribute, as stated in StarTrek Adventures core rules, rather than _Security_ discipline.
-- **Automatically start combat** when initializing an encounter
+- **Automatically start combat** when initializing an encounter.
 - **Automatically "roll" initiatives** and **reset activation** whenever a character joins the encounter.
 - **Hide chat messages and notification spam** from "rolling" initiatives in the background.
 - If the combatant token is hidden to players based on its token settings:
-	- **Hide combatant names** from players in CombatTracker as well as ChatLog. Combatants show as "Unknown Combatant" (or your localized equivalent). Names are always visible for GM.
-	- **Hide target value** of dice rolls in ChatLog, to not reveal stats to players.
+	- **Hide combatant names** from players in CombatTracker as well as ChatLog. Combatants show as "Unknown Combatant" (or your localized equivalent). Always visible for GM.
+	- **Hide target value** of dice rolls in ChatLog, to not reveal stats to players. Always visible for GM.
 - **Hide combatant initiative** of neutral and enemy characters from players in CombatTracker. Always visible for GM. Players only see the turn-order, not actual values.
+- **Hide initiatives roll buttons for GM**, as they aren't needed anymore.
 - Features inherited from [Lancer Initiative](https://github.com/BoltsJ/lancer-initiative.git):
 	- **Sort combatants** by friendly/neutral/enemy, then by initiative.
 	- Support for combatants that have **multiple turns per round**. E.g. for NPC ship crews or when given by special talents. GM can right-click combatants in the list and hit _"Add Activation"_.
