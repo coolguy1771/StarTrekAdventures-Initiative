@@ -101,7 +101,7 @@ Hooks.once('setup', () =>
 	{
 		wrapped(type, documents, result, options, userId);
 		
-		if (type == "Combatant")
+		if (game.user.isGM && type == "Combatant")
 		{
 			const module = CONFIG.LancerInitiative.module;
 			const updates = documents.map(c =>
