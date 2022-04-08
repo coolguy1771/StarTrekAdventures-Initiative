@@ -1,6 +1,15 @@
 # Overview
 This [FoundryVTT](https://foundryvtt.com/) module provides various CombatTracker improvements, intended to be used with the [StarTrekAdventures system](https://github.com/mkscho63/sta). The module heavily interacts with the awesome [Lancer Initiative](https://github.com/BoltsJ/lancer-initiative.git) module, which does most of the work.
 
+**GameMaster view:**
+
+[video]
+
+**Player view with hidden info:**
+![sta-initiative-0 1 1-player-view-hl720p](https://user-images.githubusercontent.com/102434248/162522024-75b8e1a5-2936-4b8f-96d6-f1ebf1653604.jpg)
+
+
+
 # Tested against these Dependencies
 - [Star Trek Adventures 2d20 system](https://foundryvtt.com/packages/sta) by FullMetalSeraph - Version 1.1.6 ([Manifest](https://raw.githubusercontent.com/mkscho63/sta/master/src/system.json))
 - [Lancer Initiative](https://foundryvtt.com/packages/lancer-initiative) by Bolts - Version 24 ([Manifest](https://github.com/BoltsJ/lancer-initiative/releases/download/v24/module.json))
