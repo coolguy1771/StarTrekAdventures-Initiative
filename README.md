@@ -27,7 +27,7 @@ This [FoundryVTT](https://foundryvtt.com/) module provides various CombatTracker
 - [LibWrapper](https://foundryvtt.com/packages/lib-wrapper) by ruipin - Version 1.12.4.0 ([Manifest](https://github.com/ruipin/fvtt-lib-wrapper/releases/download/v1.12.4.0/module.json))
 - [LCARS UI for Star Trek Adventures](https://foundryvtt.com/packages/sta-lcars-ui) by Fabulist - Version 0.2.2 ([Manifest](https://raw.githubusercontent.com/FabulistVtt/sta-lcars-ui/main/module.json)) (just strongly recommended, not a hard-dependency)
 # Credits
-Various other modules and assets used have been used for the video/screenshot:
+Various other modules and assets have been used for the video/screenshot:
 - [Combat Utility Belt](https://github.com/death-save/combat-utility-belt)
 - [Dice So Nice!](https://gitlab.com/riccisi/foundryvtt-dice-so-nice)
 - [Shared Vision](https://github.com/CDeenen/SharedVision)
