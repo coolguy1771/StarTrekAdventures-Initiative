@@ -27,9 +27,12 @@ This [FoundryVTT](https://foundryvtt.com/) module provides various CombatTracker
 - [LibWrapper](https://foundryvtt.com/packages/lib-wrapper) by ruipin - Version 1.12.4.0 ([Manifest](https://github.com/ruipin/fvtt-lib-wrapper/releases/download/v1.12.4.0/module.json))
 - [LCARS UI for Star Trek Adventures](https://foundryvtt.com/packages/sta-lcars-ui) by Fabulist - Version 0.2.2 ([Manifest](https://raw.githubusercontent.com/FabulistVtt/sta-lcars-ui/main/module.json)) (just strongly recommended, not a hard-dependency)
 # Credits
-Various other modules used have been used for the video/screenshot:
+Various other modules and assets used have been used for the video/screenshot:
 - [Combat Utility Belt](https://github.com/death-save/combat-utility-belt)
 - [Dice So Nice!](https://gitlab.com/riccisi/foundryvtt-dice-so-nice)
 - [Shared Vision](https://github.com/CDeenen/SharedVision)
 - [Unity2Foundry](https://github.com/CoolcatFVTT/Unity2Foundry-Module)
 - [Replaced death status icon](https://en.wikipedia.org/wiki/File:Skull_and_Crossbones.svg)
+- For assets used for the map, see [Unity2Foundry Credits](https://github.com/CoolcatFVTT/Unity2Foundry-Project/blob/main/README.md#credits)
+- Character token icons were created from [StarTrek Online](https://store.steampowered.com/app/9900/Star_Trek_Online/)
+- Various item icons: [Memory-Alpha](https://memory-alpha.fandom.com/)
