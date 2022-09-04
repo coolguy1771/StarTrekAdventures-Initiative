@@ -23,8 +23,8 @@ This [FoundryVTT](https://foundryvtt.com/) module provides various CombatTracker
 
 # Tested against these Dependencies
 - [Star Trek Adventures 2d20 system](https://foundryvtt.com/packages/sta) by FullMetalSeraph - Version 1.1.6 ([Manifest](https://raw.githubusercontent.com/mkscho63/sta/master/src/system.json))
-- [Lancer Initiative](https://foundryvtt.com/packages/lancer-initiative) by Bolts - Version 24 ([Manifest](https://github.com/BoltsJ/lancer-initiative/releases/download/v24/module.json))
-- [LibWrapper](https://foundryvtt.com/packages/lib-wrapper) by ruipin - Version 1.12.4.0 ([Manifest](https://github.com/ruipin/fvtt-lib-wrapper/releases/download/v1.12.4.0/module.json))
+- [Lancer Initiative](https://foundryvtt.com/packages/lancer-initiative) by Bolts - Version 25 ([Manifest](https://github.com/BoltsJ/lancer-initiative/releases/download/v25/module.json))
+- [LibWrapper](https://foundryvtt.com/packages/lib-wrapper) by ruipin - Version 1.12.7.2 ([Manifest](https://github.com/ruipin/fvtt-lib-wrapper/releases/download/v1.12.7.2/module.json))
 - [LCARS UI for Star Trek Adventures](https://foundryvtt.com/packages/sta-lcars-ui) by Fabulist - Version 0.2.2 ([Manifest](https://raw.githubusercontent.com/FabulistVtt/sta-lcars-ui/main/module.json)) (just strongly recommended, not a hard-dependency)
 # Credits
 Various other modules and assets have been used for the video/screenshot:

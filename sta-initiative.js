@@ -21,7 +21,7 @@ class STAInitiative {
 	{
 		if (game.user.isGM)
 			return true;
-		else if (combatant.data.name)
+		else if (combatant._source.name)
 			return true; // manual display name override in CombatTracker
 		else
 			return this.isTokenInfoVisible(combatant.token);
@@ -130,13 +130,12 @@ Hooks.once('setup', () =>
 	}, 'MIXED');	
 	
 	// Hide Combatant names in CombatTracker, if hidden in HUD
-	libWrapper.register(STAInitiative.MODULE_ID, 'Combatant.prototype.name', function(wrapped)
+	libWrapper.register(STAInitiative.MODULE_ID, 'Combatant.prototype.prepareDerivedData', function(wrapped)
 	{
-		if (STAInitiative.isCombatantInfoVisible(this))
-			return wrapped();
-		else
-			return game.i18n.localize("COMBAT.UnknownCombatant");
-	}, 'MIXED');
+		wrapped();
+		if (!STAInitiative.isCombatantInfoVisible(this))
+			this.name = game.i18n.localize("COMBAT.UnknownCombatant");
+	}, 'WRAPPER');
 	
 	// Hide Combatant initiative in CombatTracker, when not the GameMaster (works via CSS)
 	libWrapper.register(STAInitiative.MODULE_ID, 'CombatTracker.prototype.activateListeners', function(wrapped, html)
