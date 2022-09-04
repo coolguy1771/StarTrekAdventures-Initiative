@@ -3,12 +3,12 @@ class STAInitiative {
 	
 	static shouldHideChatMessage(cm)
 	{
-		return cm?.data?.flags?.core?.initiativeRoll;
+		return cm?.flags?.core?.initiativeRoll;
 	}
 	
 	static shouldCensorChatMessage(cm)
 	{
-		const speaker = cm.data.speaker;
+		const speaker = cm.speaker;
 		if (!speaker)
 			return false;
 		
@@ -32,7 +32,7 @@ class STAInitiative {
 		if (!token || game.user.isGM)
 			return true;
 		
-		const mode = token.data.displayName;			
+		const mode = token.displayName;
 		if (mode === CONST.TOKEN_DISPLAY_MODES.NONE)
 			return false;
 		else if (mode === CONST.TOKEN_DISPLAY_MODES.CONTROL ||
