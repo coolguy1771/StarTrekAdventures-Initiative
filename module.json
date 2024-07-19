@@ -3,7 +3,7 @@
 	"name": "sta-initiative",
 	"title": "Star Trek Adventures Initiative",
 	"description": "CombatTracker improvements for Star Trek Adventures. Depends on the 'Lancer Initiative' module by Bolts, which does most of the work.",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"authors": [
 		{ "name": "CoolcatFVTT", "url": "https://github.com/CoolcatFVTT/" }
 	],
@@ -40,7 +40,7 @@
 	"compatibility": {
 		"minimum": "10",
 		"verified": "10.284",
-		"maximum": "11"
+		"maximum": "12"
 	},
 	"license": "LGPL 3.0",
 	"url": "https://github.com/jdc0331/StarTrekAdventures-Initiative",
