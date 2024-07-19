@@ -44,6 +44,6 @@
 	},
 	"license": "LGPL 3.0",
 	"url": "https://github.com/jdc0331/StarTrekAdventures-Initiative",
-	"manifest": "https://raw.githubusercontent.com/jdc0331/StarTrekAdventures-Initiative/main/module.json",
-	"download": "https://github.com/jdc0331/StarTrekAdventures-Initiative/archive/refs/tags/v0.2.1.zip"
+	"manifest": "https://raw.githubusercontent.com/coolguy1771/StarTrekAdventures-Initiative/main/module.json",
+	"download": "https://github.com/coolguy1771/StarTrekAdventures-Initiative/archive/refs/tags/v0.2.2.zip"
 }
